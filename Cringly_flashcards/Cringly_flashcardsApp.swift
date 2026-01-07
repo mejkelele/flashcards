@@ -1,17 +1,26 @@
-//
-//  Cringly_flashcardsApp.swift
-//  Cringly_flashcards
-//
-//  Created by Michał Podłaszczyk on 06/11/2025.
-//
-
 import SwiftUI
 
 @main
 struct Cringly_flashcardsApp: App {
+    @StateObject private var flashcardManager = FlashcardManager()
+    @StateObject private var authManager = AuthManager()
+
+    init() {
+        NotificationManager.shared.requestPermission()
+        NotificationManager.shared.scheduleDailyReminder()
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if authManager.isAuthenticated {
+                HomeView()
+                    .environmentObject(flashcardManager)
+                    .environmentObject(authManager)
+            } else {
+                ContentView()
+                    .environmentObject(flashcardManager)
+                    .environmentObject(authManager)
+            }
         }
     }
 }
