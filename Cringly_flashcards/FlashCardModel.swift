@@ -22,7 +22,9 @@ class FlashcardManager: ObservableObject {
     
     private let saveKey = "SavedFlashcardsData"
     
-    init() { load() }
+    init() {
+        print("sciezka do DB: \(NSHomeDirectory())")
+        load() }
     
     
     func markCard(cardId: UUID, in setID: UUID, known: Bool) {

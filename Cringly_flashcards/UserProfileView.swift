@@ -89,6 +89,17 @@ struct UserProfileView: View {
                 }
                 .padding(.horizontal, 40)
                 .padding(.bottom, 30)
+                
+                // Dodaj to pod przyciskiem Wyloguj się w UserProfileView.swift
+
+                Link(destination: URL(string: "https://github.com/mejkelele")!) {
+                    HStack {
+                        Image(systemName: "safari")
+                        Text("Odwiedź stronę autora")
+                    }
+                    .foregroundColor(.green)
+                    .padding()
+                }
             }
         }
     }
